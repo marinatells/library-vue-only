@@ -14,9 +14,5 @@ const app = createApp(App);
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
-// Настройка роутера
-import router from './router.js';
-app.use(router);
-
 // Отрисовка приложения
 app.mount('#app');
