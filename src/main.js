@@ -10,9 +10,8 @@ import { createApp } from 'vue';
 import App from './App.vue';
 const app = createApp(App);
 
-// Подключаем JS от бутстрапа
+// Подключение JS от bootstrap
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 
-// Отрисовка приложения
 app.mount('#app');

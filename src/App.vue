@@ -1,5 +1,5 @@
 <template>
-    <div class="admin-page container mt-3">
+    <div class="container mt-5">
         <h1>Список книг нашей библиотеки</h1>
         <table class="table">
             <thead>
@@ -12,19 +12,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="item in books" :key="item.id">
-                    <th scope="row">{{item.id}}</th>
-                    <td>{{item.title}}</td>
-                    <td>{{item.author}}</td>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Война и мир</td>
+                    <td>Л. Н. Толстой</td>
                     <td>
-                        <button type="button" class="btn btn-outline-primary"
-                                v-on:click="changeBookAvailability(item.id)">
-                            {{ item.availability ? 'Доступна' : 'Выдана' }}
+                        <button type="button" class="btn btn-outline-primary" v-on:click="">
+                            Доступна
                         </button>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-outline-danger"
-                                v-on:click="deleteBook(item.id)">
+                        <button type="button" class="btn btn-outline-danger" v-on:click="">
                             Удалить
                         </button>
                     </td>
@@ -33,11 +31,11 @@
                 <!-- Строка с полями для добавления новой книги -->
                 <tr>
                     <th scope="row">Добавить</th>
-                    <td><input type="text" class="form-control" v-model="title"></td>
-                    <td><input type="text" class="form-control" v-model="author"></td>
+                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td>
                     <td></td>
                     <td>
-                        <button type="button" class="btn btn-outline-success" v-on:click="addBook">
+                        <button type="button" class="btn btn-outline-success" v-on:click="">
                             Добавить
                         </button>
                     </td>
@@ -48,42 +46,23 @@
 </template>
 
 <script>
-    let API = 'http://library.marinayv.beget.tech';
-
     export default {
         mounted() {
             // Сразу после загрузки страницы подгружаем список книг и отображаем его
             this.loadBookList();
         },
-        data() {
-            return {
-                books: [], // книги
-                title: '',
-                author: ''
-            }
-        },
         methods: {
-            async loadBookList() {
-                // Получаем книги
-                let response = await axios.get(API + '/api/book/all');
+            loadBookList(){
 
-                // Сохраняем книги в данные компонента
-                this.books = response.data;
             },
-            async addBook() {
-                let response = await axios.post(API + '/api/book/add', {
-                    title: this.title,
-                    author: this.author
-                });
-                this.loadBookList();
+            addBook(){
+
             },
-            async deleteBook(id) {
-                let response = await axios.get(API + '/api/book/delete/' + id);
-                this.loadBookList();
+            deleteBook(id){
+
             },
-            async changeBookAvailability(id) {
-                let response = await axios.get(API + '/api/book/change_availabilty/' + id);
-                this.loadBookList();
+            changeBookAvailability(id){
+
             }
         }
     }
@@ -91,4 +70,16 @@
 
 
 <style>
+    .app {
+        background-color: rgb(235, 233, 233);
+        padding: 20px;
+        text-align: center;
+        border-radius: 8px;
+    }
+
+    .app nav {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
 </style>
